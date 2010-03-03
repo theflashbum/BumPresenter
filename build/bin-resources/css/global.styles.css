@@ -1,19 +1,17 @@
 /* CSS file */
 
-.ImageContainer
-{
-	backgroundColor: black;
-	useMoudeControls: false;
+.ImageContainer {
+    backgroundColor: black;
+    useMoudeControls: false;
 }
 
-#1
-{
-	
+#1 {
+
 }
 
-.VideoSource
-{
-	width:320;
-	height:240;
-	loop: true;
+.VideoSource {
+    width: 320;
+    height: 240;
+    loop: true;
+    useMouseControls: false;
 }
