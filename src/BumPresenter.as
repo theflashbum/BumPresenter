@@ -2,14 +2,16 @@ package
 {
     import camo.core.decal.Decal;
 
+    import com.flashartofwar.bootstrap.managers.SettingsManager;
     import com.flashbum.core.pv3d.AutoFlipCardboardVisionPv3d;
 
     import flash.display.DisplayObject;
     import flash.display.StageDisplayState;
-    import flash.display.StageQuality;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.events.MouseEvent;
+
+    import net.hires.debug.Stats;
 
     /**
      * @author jessefreeman
@@ -22,8 +24,23 @@ package
 
         public function BumPresenter()
         {
-            stage.quality = StageQuality.LOW;
+            //stage.quality = StageQuality.LOW;
             super();
+        }
+
+        override protected function preinit():void
+        {
+            addEventListener(Event.ADDED_TO_STAGE, onAddToStage);
+        }
+
+        private function onAddToStage(event:Event):void
+        {
+            beginConfigure();
+        }
+
+        override protected function configureFlashParams():void
+        {
+            loadConfig("xml/config.xml");
         }
 
         override protected function createCardboardVision():void
@@ -32,6 +49,8 @@ package
 
             // Creates 3d Engine instance
             cardboardVision = new AutoFlipCardboardVisionPv3d(false);
+
+
             addChild(cardboardVision as DisplayObject);
         }
 
@@ -67,6 +86,9 @@ package
 
             // Creates Dirt Overlay
             createCornerDirt();
+
+            if (SettingsManager.instance.debug)
+                addChild(new Stats());
         }
 
         protected function createCornerDirt():void
@@ -80,7 +102,7 @@ package
 
                 realignBug();
             }
-            catch (error:Error)
+            catch(error:Error)
             {
                 // decal was not found
             }
@@ -101,7 +123,7 @@ package
                 case 37:
                     cardboardVision.back();
                     break;
-                case(70):
+                case ( 70 ):
                     goFullScreen();
                     break;
             }
@@ -125,6 +147,16 @@ package
         protected function _handleClick(event:MouseEvent):void
         {
             goFullScreen();
+        }
+
+        public function nextSlide():void
+        {
+            cardboardVision.next();
+        }
+
+        public function prevSldie():void
+        {
+            cardboardVision.back();
         }
     }
 }
