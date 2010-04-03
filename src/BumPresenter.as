@@ -49,7 +49,7 @@ package
 
         override protected function createCardboardVision():void
         {
-            var defaultLoc:String = stage.loaderInfo.parameters.defaultLocation;
+            var defaultLoc:String = stage.loaderInfo.parameters.presentation;
 
             defaultLocation = defaultLoc ? defaultLoc : "intro";
 

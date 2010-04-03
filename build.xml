@@ -22,12 +22,6 @@ I am working on making my own but this one is so damn good I couldn't help mysel
         <echo message="disconnect    --> Removed git files from project"/>
     </target>
 
-    <!-- Deletes .git folder and .gitignore file -->
-    <target name="disconnect">
-        <delete dir="${basedir}/.git"/>
-        <delete file="${basedir}/.gitignore"/>
-    </target>
-
     <!-- Clean Build and Report files -->
     <target name="clean">
         <!-- Remove all directories created during the build process -->
@@ -91,7 +85,7 @@ I am working on making my own but this one is so damn good I couldn't help mysel
 
     <target name="local-test" depends="compile-swf" if="autolaunch.url">
         <exec executable="open">
-            <arg line="-a ${browser} ${bin.loc}/index.html"/>
+            <arg line="-a ${browser} ${local.url}"/>
         </exec>
     </target>
 
