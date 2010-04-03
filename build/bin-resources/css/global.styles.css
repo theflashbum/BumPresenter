@@ -1,15 +1,12 @@
 /* CSS file */
 
-.ImageContainer {
-    backgroundColor: black;
-    useMoudeControls: false;
+ImageContainer {
+    backgroundColor: white;
+    useMouseControls: false;
+    percise: true;
 }
 
-#1 {
-
-}
-
-.VideoSource {
+VideoSource {
     width: 320;
     height: 240;
     loop: true;

@@ -3,13 +3,16 @@ package
     import camo.core.decal.Decal;
 
     import com.flashartofwar.bootstrap.managers.SettingsManager;
-    import com.flashbum.core.pv3d.AutoFlipCardboardVisionPv3d;
+    import com.flashbum.core.pv3d.CardboardVisionPresenterPv3d;
 
     import flash.display.DisplayObject;
     import flash.display.StageDisplayState;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.events.MouseEvent;
+    import flash.events.TimerEvent;
+    import flash.ui.Mouse;
+    import flash.utils.Timer;
 
     import net.hires.debug.Stats;
 
@@ -21,6 +24,7 @@ package
 
         private var includedClasses:IncludeClasses;
         private var bug:Decal;
+        private var hideMouseTimer:Timer;
 
         public function BumPresenter()
         {
@@ -45,10 +49,12 @@ package
 
         override protected function createCardboardVision():void
         {
-            defaultLocation = "intro";
+            var defaultLoc:String = stage.loaderInfo.parameters.defaultLocation;
+
+            defaultLocation = defaultLoc ? defaultLoc : "intro";
 
             // Creates 3d Engine instance
-            cardboardVision = new AutoFlipCardboardVisionPv3d(false);
+            cardboardVision = new CardboardVisionPresenterPv3d(false);
 
 
             addChild(cardboardVision as DisplayObject);
@@ -87,8 +93,28 @@ package
             // Creates Dirt Overlay
             createCornerDirt();
 
+
+            addMouseHideLogic();
+
             if (SettingsManager.instance.debug)
                 addChild(new Stats());
+        }
+
+        private function addMouseHideLogic():void {
+
+            hideMouseTimer = new Timer(500, 1);
+            hideMouseTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onHideMouse);
+            addEventListener(MouseEvent.MOUSE_MOVE, resetTimer);
+        }
+
+        private function onHideMouse(event:TimerEvent):void {
+            Mouse.hide();
+        }
+
+        private function resetTimer(event:MouseEvent):void {
+            Mouse.show();
+            hideMouseTimer.reset();
+            hideMouseTimer.start();
         }
 
         protected function createCornerDirt():void

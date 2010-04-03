@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<containers layout="ConnectFourLayout" random="false" bendOverride="true" defaultContainer="1">
+    <container class="ImageContainer" id="1" title="Slide 1" w="1024" h="768"
+               src="presentations/images/intro/intro.001.jpg"/>
+    <container class="ImageContainer" id="2" title="Slide 2" w="1024" h="768"
+               src="presentations/images/intro/intro.002.jpg"/>
+    <container class="ImageContainer" id="3" title="Slide 3" w="1024" h="768"
+               src="presentations/images/intro/intro.003.jpg"/>
+    <container class="ImageContainer" id="4" title="Slide 4" w="1024" h="768"
+               src="presentations/images/intro/intro.004.jpg"/>
+    <container class="ImageContainer" id="5" title="Slide 5" w="1024" h="768"
+               src="presentations/images/intro/intro.005.jpg"/>
+    <container class="ImageContainer" id="6" title="Slide 6" w="1024" h="768"
+               src="presentations/images/intro/intro.006.jpg"/>
+    <container class="ImageContainer" id="7" title="Slide 7" w="1024" h="768"
+               src="presentations/images/intro/intro.007.jpg"/>
+    <container class="ImageContainer" id="8" title="Slide 8" w="1024" h="768"
+               src="presentations/images/intro/intro.008.jpg"/>
+</containers>
